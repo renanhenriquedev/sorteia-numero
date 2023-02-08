@@ -7,24 +7,22 @@ input.type = 'text';
 body.appendChild(input);
 
 const createDiv = document.createElement('div');
-const catchDiv = document.querySelector('div');
+
+const createUl = document.createElement('ul');
 
 body.appendChild(createDiv);
 
+const catchDiv = document.querySelector('div');
+
+catchDiv.appendChild(createUl)
+
 let cont = 0;
 
-// function createButton (numero, par) {
-//     const button = document.createElement('button');
-//     button.id = numero
-//     button.type = 'button'
-//     button.innerText = 'X';
-//     par.appendChild(button)
-// }
 
 function createTask() {
-    const catchDiv = document.querySelector('div');
-    const task = document.createElement('p');
-    const valueP = input.value;
+    const catchUl = document.querySelector('div');
+    const task = document.createElement('li');
+    const valueLi = input.value;
     task.id = cont;
 
     const button = document.createElement('button');
@@ -33,8 +31,8 @@ function createTask() {
     button.innerText = 'X';
 
 
-    task.innerHTML = valueP;
-    catchDiv.appendChild(task);
+    task.innerHTML = valueLi;
+    catchUl.appendChild(task);
     task.appendChild(button);
 
     cont += 1
