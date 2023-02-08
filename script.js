@@ -31,12 +31,28 @@ function createTask() {
     cont += 1
 }
 
+function remove () {
+    const allImg = document.querySelectorAll('img');
+    const divTask = document.querySelector('div');
+    const childrens = divTask.childNodes;
+        for (let i = 0; i < allImg.length; i += 1) {
+            allImg[i].addEventListener('click', () => {
+            const remove = allImg[i].id
+            const catchRemove = document.getElementById(remove);
+            divTask.removeChild(catchRemove);
+        })
+    } 
+}
+
+
+
 
 function validatesEnter() {
     const catchInput = document.querySelector('input');
     catchInput.addEventListener('keydown', function (e) {
         if (e.code === 'Enter') {
             createTask();
+            remove();
         }
 
     })
