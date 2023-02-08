@@ -13,6 +13,13 @@ body.appendChild(createDiv);
 
 let cont = 0;
 
+// function createButton (numero, par) {
+//     const button = document.createElement('button');
+//     button.id = numero
+//     button.type = 'button'
+//     button.innerText = 'X';
+//     par.appendChild(button)
+// }
 
 function createTask() {
     const catchDiv = document.querySelector('div');
@@ -20,24 +27,26 @@ function createTask() {
     const valueP = input.value;
     task.id = cont;
 
-    const img = document.createElement('img');
-    img.src = './imagens/remove.png';
-    img.id = cont;
+    const button = document.createElement('button');
+    button.id = cont;
+    button.type = 'button'
+    button.innerText = 'X';
+
 
     task.innerHTML = valueP;
     catchDiv.appendChild(task);
-    task.appendChild(img);
+    task.appendChild(button);
 
     cont += 1
 }
 
 function remove () {
-    const allImg = document.querySelectorAll('img');
+    const allButton = document.querySelectorAll('button');
     const divTask = document.querySelector('div');
     const childrens = divTask.childNodes;
-        for (let i = 0; i < allImg.length; i += 1) {
-            allImg[i].addEventListener('click', () => {
-            const remove = allImg[i].id
+        for (let i = 0; i < allButton.length; i += 1) {
+            allButton[i].addEventListener('click', () => {
+            const remove = allButton[i].id
             const catchRemove = document.getElementById(remove);
             divTask.removeChild(catchRemove);
         })
