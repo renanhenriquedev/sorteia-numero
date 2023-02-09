@@ -30,26 +30,27 @@ function createTask() {
     button.type = 'button'
     button.innerHTML = 'X';
 
+    const buttonEdit = document.createElement('button');
+    buttonEdit.id = cont;
+    buttonEdit.classList.add('button'); 
+    buttonEdit.type = 'button'
+
+    const createSpan = document.createElement('span');
+    createSpan.classList.add('button-icon');
+
+    const createIon = document.createElement('ion-icon');
+    createIon.name = 'create-outline'
 
     task.innerText = valueLi;
     catchUl.appendChild(task);
     task.appendChild(button);
+    task.appendChild(buttonEdit);
 
+    buttonEdit.appendChild(createSpan);
+    createSpan.appendChild(createIon);
     cont += 1
 }
 
-function remove() {
-    const allButton = document.querySelectorAll('button');
-    const ulTask = document.querySelector('ul');
-    const childrens = ulTask.childNodes;
-    for (let i = 0; i < allButton.length; i += 1) {
-        allButton[i].addEventListener('click', () => {
-            const remove = allButton[i].id
-            const catchRemove = document.getElementById(remove);
-            ulTask.removeChild(catchRemove);
-        })
-    }
-}
 
 function storeTask() {
     const array = [];
@@ -61,6 +62,21 @@ function storeTask() {
         localStorage.setItem('li', JSON.stringify(array));
     }
 }
+
+function remove() {
+    const allButton = document.querySelectorAll('button');
+    const ulTask = document.querySelector('ul');
+    const childrens = ulTask.childNodes;
+    for (let i = 0; i < allButton.length; i += 1) {
+        allButton[i].addEventListener('click', () => {
+            const remove = allButton[i].id
+            const catchRemove = document.getElementById(remove);
+            ulTask.removeChild(catchRemove);
+            storeTask();
+        })
+    }
+}
+
 
 function rescueLi() {
     if (localStorage.getItem('li') !== null) {
