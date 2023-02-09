@@ -32,7 +32,7 @@ function createTask() {
 
     const buttonEdit = document.createElement('button');
     buttonEdit.id = cont;
-    buttonEdit.classList.add('button'); 
+    buttonEdit.classList.add('button');
     buttonEdit.type = 'button'
 
     const createSpan = document.createElement('span');
@@ -73,10 +73,24 @@ function remove() {
             const catchRemove = document.getElementById(remove);
             ulTask.removeChild(catchRemove);
             storeTask();
-        })
+        })      
     }
 }
 
+function teste () {
+    const allButton = document.querySelectorAll('button');
+    const ulTask = document.querySelector('ul');
+    const childrens = ulTask.childNodes;
+    for (let i = 0; i < allButton.length; i += 1) {
+        allButton[i].addEventListener('click', () => {
+            const a = document.querySelectorAll('li').length
+            if( a === 0 /*&& allButton[i].addEventListener === 'click'*/) {
+                localStorage.removeItem('li');
+            }
+        })      
+        
+    }
+}
 
 function rescueLi() {
     if (localStorage.getItem('li') !== null) {
@@ -109,6 +123,7 @@ function validatesEnter() {
             createTask();
             remove();
             storeTask();
+            teste();
         }
 
     })
@@ -119,6 +134,8 @@ function validatesEnter() {
 function init() {
     validatesEnter();
     rescueLi();
+    // removeLast();
+    teste();
 }
 
-window.onload = init;
+window.onload = init;   
