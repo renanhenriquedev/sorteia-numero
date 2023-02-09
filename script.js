@@ -27,6 +27,7 @@ function createTask() {
 
     const button = document.createElement('button');
     button.id = cont;
+    button.classList.add('remove');
     button.type = 'button'
     button.innerHTML = 'X';
 
@@ -64,7 +65,7 @@ function storeTask() {
 }
 
 function remove() {
-    const allButton = document.querySelectorAll('button');
+    const allButton = document.querySelectorAll('.remove');
     const ulTask = document.querySelector('ul');
     const childrens = ulTask.childNodes;
     for (let i = 0; i < allButton.length; i += 1) {
@@ -77,14 +78,14 @@ function remove() {
     }
 }
 
-function teste () {
-    const allButton = document.querySelectorAll('button');
+function removeLast () {
+    const allButton = document.querySelectorAll('.remove');
     const ulTask = document.querySelector('ul');
     const childrens = ulTask.childNodes;
     for (let i = 0; i < allButton.length; i += 1) {
         allButton[i].addEventListener('click', () => {
             const a = document.querySelectorAll('li').length
-            if( a === 0 /*&& allButton[i].addEventListener === 'click'*/) {
+            if( a === 0 ) {
                 localStorage.removeItem('li');
             }
         })      
@@ -105,12 +106,30 @@ function rescueLi() {
 
             const button = document.createElement('button');
             button.id = cont;
+            button.classList.add('remove');
 
             button.type = 'button'
             button.innerHTML = 'X';
             task.appendChild(button);
-            cont += 1
+            
             remove();
+
+            const buttonEdit = document.createElement('button');
+            buttonEdit.id = cont;
+            buttonEdit.classList.add('button');
+            buttonEdit.type = 'button'
+
+            const createSpan = document.createElement('span');
+            createSpan.classList.add('button-icon');
+
+            const createIon = document.createElement('ion-icon');
+            createIon.name = 'create-outline'
+
+            task.appendChild(buttonEdit);
+
+            buttonEdit.appendChild(createSpan);
+            createSpan.appendChild(createIon);
+            cont += 1
         }
     }
 }
@@ -123,7 +142,7 @@ function validatesEnter() {
             createTask();
             remove();
             storeTask();
-            teste();
+            removeLast();
         }
 
     })
@@ -134,8 +153,7 @@ function validatesEnter() {
 function init() {
     validatesEnter();
     rescueLi();
-    // removeLast();
-    teste();
+    removeLast();
 }
 
 window.onload = init;   
