@@ -74,22 +74,39 @@ function remove() {
             const catchRemove = document.getElementById(remove);
             ulTask.removeChild(catchRemove);
             storeTask();
-        })      
+        })
     }
 }
 
-function removeLast () {
+function removeLast() {
     const allButton = document.querySelectorAll('.remove');
     const ulTask = document.querySelector('ul');
     const childrens = ulTask.childNodes;
     for (let i = 0; i < allButton.length; i += 1) {
         allButton[i].addEventListener('click', () => {
             const a = document.querySelectorAll('li').length
-            if( a === 0 ) {
+            if (a === 0) {
                 localStorage.removeItem('li');
             }
-        })      
-        
+        })
+
+    }
+}
+
+function edit() {
+    const allButton = document.getElementsByClassName('button');
+    for (let i = 0; i < allButton.length; i += 1) {
+        let cont = 1;
+        allButton[i].addEventListener('click', () => {
+            let createInput = document.createElement('input');
+            createInput.classList.add(cont +1);
+            console.log(cont)
+            cont += 1
+            const catchLi = document.getElementById(allButton[i].id);
+            catchLi.appendChild(createInput)
+            createInput = undefined;
+        })
+        // cont += 1;
     }
 }
 
@@ -111,7 +128,7 @@ function rescueLi() {
             button.type = 'button'
             button.innerHTML = 'X';
             task.appendChild(button);
-            
+
             remove();
 
             const buttonEdit = document.createElement('button');
@@ -129,6 +146,7 @@ function rescueLi() {
 
             buttonEdit.appendChild(createSpan);
             createSpan.appendChild(createIon);
+            edit()
             cont += 1
         }
     }
@@ -143,6 +161,7 @@ function validatesEnter() {
             remove();
             storeTask();
             removeLast();
+            edit();
         }
 
     })
