@@ -31,24 +31,11 @@ function createTask() {
     button.type = 'button'
     button.innerHTML = 'X';
 
-    const buttonEdit = document.createElement('button');
-    buttonEdit.id = cont;
-    buttonEdit.classList.add('button');
-    buttonEdit.type = 'button'
-
-    const createSpan = document.createElement('span');
-    createSpan.classList.add('button-icon');
-
-    const createIon = document.createElement('ion-icon');
-    createIon.name = 'create-outline'
 
     task.innerText = valueLi;
     catchUl.appendChild(task);
     task.appendChild(button);
-    task.appendChild(buttonEdit);
 
-    buttonEdit.appendChild(createSpan);
-    createSpan.appendChild(createIon);
     cont += 1
 }
 
@@ -93,22 +80,6 @@ function removeLast() {
     }
 }
 
-function edit() {
-    const allButton = document.getElementsByClassName('button');
-    for (let i = 0; i < allButton.length; i += 1) {
-        let cont = 1;
-        allButton[i].addEventListener('click', () => {
-            let createInput = document.createElement('input');
-            createInput.classList.add(cont +1);
-            console.log(cont)
-            cont += 1
-            const catchLi = document.getElementById(allButton[i].id);
-            catchLi.appendChild(createInput)
-            createInput = undefined;
-        })
-        // cont += 1;
-    }
-}
 
 function rescueLi() {
     if (localStorage.getItem('li') !== null) {
@@ -131,27 +102,24 @@ function rescueLi() {
 
             remove();
 
-            const buttonEdit = document.createElement('button');
-            buttonEdit.id = cont;
-            buttonEdit.classList.add('button');
-            buttonEdit.type = 'button'
-
-            const createSpan = document.createElement('span');
-            createSpan.classList.add('button-icon');
-
-            const createIon = document.createElement('ion-icon');
-            createIon.name = 'create-outline'
-
-            task.appendChild(buttonEdit);
-
-            buttonEdit.appendChild(createSpan);
-            createSpan.appendChild(createIon);
-            edit()
-            cont += 1
         }
     }
 }
 
+
+const buttonEdit = document.createElement('button');
+buttonEdit.id = 'edit'
+body.appendChild(buttonEdit);
+
+function editOption () {
+    const catchLi = document.querySelectorAll('li');
+    const catchButton = document.querySelector('#edit')
+    if (catchLi.length > 0 ) {
+        catchButton.addEventListener('click', () => {
+            console.log('pegando');
+        })
+    }
+}
 
 function validatesEnter() {
     const catchInput = document.querySelector('input');
@@ -161,7 +129,7 @@ function validatesEnter() {
             remove();
             storeTask();
             removeLast();
-            edit();
+            editOption();
         }
 
     })
@@ -173,6 +141,7 @@ function init() {
     validatesEnter();
     rescueLi();
     removeLast();
+    editOption();
 }
 
 window.onload = init;   
