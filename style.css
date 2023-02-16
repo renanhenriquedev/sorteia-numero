@@ -4,6 +4,11 @@ img {
     margin-left: 15px;
 }
 
-/* li {
-    background-color: #FFFFFF;
-} */
+li {
+    width: 25px;
+}
+
+button {
+    position: relative;
+    left: 150px;
+}

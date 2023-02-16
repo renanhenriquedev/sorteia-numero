@@ -108,6 +108,16 @@ function rescueLi() {
     }
 }
 
+// function btn () {
+//     const button = document.createElement('button');
+//             button.id = cont;
+//             button.classList.add('remove');
+
+//             button.type = 'button';
+//             button.innerHTML = 'X';
+//             catchLi[i].appendChild(button);
+
+// }
 
 const buttonEdit = document.createElement('button');
 buttonEdit.id = 'edit'
@@ -125,8 +135,23 @@ function editOption() {
                 catchLi[i].style.backgroundColor = '#ff0000';
                 catchLi[i].addEventListener('click', () => {
                     const catchInput = document.querySelector('input');
+                    const createImg = document.createElement('img')
+                    createImg.src = './done.png'
+                    body.appendChild(createImg)
+                    localStorage.setItem('miau', catchLi[i].id)
                     const a = catchLi[i].innerText 
                     catchInput.value = a;
+                    createImg.addEventListener('click', () => {
+                        catchLi[localStorage.getItem('miau')].innerText = catchInput.value
+                        const button = document.createElement('button');
+
+                        button.id = cont;
+                        button.classList.add('remove');
+            
+                        button.type = 'button';
+                        button.innerHTML = 'X';
+                        catchLi[localStorage.getItem('miau')].appendChild(button);
+                    })
                 })
             }
         }
