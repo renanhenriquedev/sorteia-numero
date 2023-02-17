@@ -12,3 +12,7 @@ button {
     position: relative;
     left: 150px;
 }
+
+.remove {
+    background-color: red;
+}
