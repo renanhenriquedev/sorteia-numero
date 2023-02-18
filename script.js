@@ -173,10 +173,20 @@ function editOption() {
             }
         }
     })
-    if (catchBtn.style.backgroundColor === 'blue') {
-        const catchInput = document.querySelector('input');
-        catchInput.innerHTML = '';
-    }
+    teste();
+}
+
+function teste() {
+    const catchBtn = document.querySelector('#edit');
+
+    setTimeout(function () {
+        catchBtn.addEventListener('click', () => {
+            if (catchBtn.style.backgroundColor === 'blue' && 'click') {
+                input.value = '';
+                console.log('pegouuuuuuuuuuuuuuuuuuuuuuuuuuu')
+            }
+        })
+    }, 5000)
 }
 
 
