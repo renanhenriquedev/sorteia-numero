@@ -37,7 +37,7 @@ function createTask() {
     catchUl.appendChild(task);
     button.append(icon)
     task.appendChild(button);
-    
+
 
     cont += 1;
     input.value = ''
@@ -99,9 +99,12 @@ function rescueLi() {
             const button = document.createElement('button');
             button.id = cont;
             button.classList.add('remove');
+            const icon = document.createElement('i');
+            icon.className = 'bi bi-x'
+            button.append(icon)
+
 
             button.type = 'button';
-            button.innerHTML = 'X';
             task.appendChild(button);
 
             remove();
@@ -111,16 +114,7 @@ function rescueLi() {
     }
 }
 
-// function btn () {
-//     const button = document.createElement('button');
-//             button.id = cont;
-//             button.classList.add('remove');
 
-//             button.type = 'button';
-//             button.innerHTML = 'X';
-//             catchLi[i].appendChild(button);
-
-// }
 
 const buttonEdit = document.createElement('button');
 buttonEdit.id = 'edit'
@@ -130,6 +124,9 @@ function editOption() {
     let cont = 1
     const catchBtn = document.querySelector('#edit');
     const catchLi = document.querySelectorAll('li');
+    const catchInput = document.querySelector('input');
+
+
     catchBtn.addEventListener('click', () => {
         cont += 1;
         console.log(cont)
@@ -139,45 +136,49 @@ function editOption() {
                 catchLi[i].style.backgroundColor = '#ff0000';
                 catchLi[i].addEventListener('click', () => {
                     const catchInput = document.querySelector('input');
-                    const createImg = document.createElement('img')
-                    createImg.src = './done.png'
-                    body.appendChild(createImg)
                     localStorage.setItem('miau', catchLi[i].id)
-                    const a = catchLi[i].innerText 
-                    // for (let i = 0; i < localStorage.getItem('li').length; i += 1) {
-                    //     console.log(localStorage.getItem('li'))
-                    //     if (localStorage.getItem('li')[i] === a[i]){
-                    //         localStorage.setItem('li')[i] = 'pegoucaralho'
-                    //     }
-                    // }
-                    catchInput.value = a;
-                    createImg.addEventListener('click', () => {
-                        catchLi[localStorage.getItem('miau')].innerText = catchInput.value
-                        const button = document.createElement('button');
+                    const a = catchLi[i].innerText
 
-                        button.id = catchLi[i].id;
-                        button.classList.add('remove');
-            
-                        button.type = 'button';
-                        button.innerHTML = 'X';
-                        catchLi[localStorage.getItem('miau')].appendChild(button);
-                        remove();
-                        for (let i = 0; i< catchLi.length; i +=1 ){
-                            
-                            array.push(catchLi[i].innerText)
-                        }
-                        localStorage.setItem('li', JSON.stringify(array))
-                    })
+                    catchBtn.style.backgroundColor = 'green'
+
+                    catchInput.value = a;
+                    if (catchBtn.style.backgroundColor === 'green') {
+                        catchBtn.addEventListener('click', () => {
+                            catchLi[localStorage.getItem('miau')].innerHTML = catchInput.value
+                            const button = document.createElement('button');
+
+                            button.id = catchLi[i].id;
+                            button.classList.add('remove');
+                            const icon = document.createElement('i');
+                            icon.className = 'bi bi-x'
+                            button.append(icon)
+
+                            button.type = 'button';
+                            catchLi[localStorage.getItem('miau')].appendChild(button);
+                            remove();
+                            for (let i = 0; i < catchLi.length; i += 1) {
+
+                                array.push(catchLi[i].innerText)
+                            }
+                            localStorage.setItem('li', JSON.stringify(array))
+                        })
+                    }
                 })
             }
         }
+        catchBtn.style.backgroundColor = 'blue'
         if (cont % 3 === 0) {
             for (let i = 0; i < catchLi.length; i += 1) {
                 catchLi[i].style.backgroundColor = 'white';
             }
         }
     })
+    if (catchBtn.style.backgroundColor === 'blue') {
+        const catchInput = document.querySelector('input');
+        catchInput.innerHTML = '';
+    }
 }
+
 
 function validatesEnter() {
     const catchInput = document.querySelector('input');
