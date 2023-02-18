@@ -30,7 +30,7 @@ function createTask() {
     button.classList.add('remove');
     button.type = 'button'
     const icon = document.createElement('i');
-    icon.className = 'bi bi-x-octagon'
+    icon.className = 'bi bi-x'
 
 
     task.innerText = valueLi;
