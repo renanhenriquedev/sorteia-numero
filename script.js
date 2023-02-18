@@ -118,6 +118,7 @@ function rescueLi() {
 
 const buttonEdit = document.createElement('button');
 buttonEdit.id = 'edit'
+buttonEdit.innerText = 'editar'
 body.appendChild(buttonEdit);
 
 function editOption() {
@@ -129,12 +130,10 @@ function editOption() {
 
     catchBtn.addEventListener('click', () => {
         cont += 1;
-        console.log(cont)
         const array = []
-        console.log(array);
         if (cont % 2 === 0 || cont === 6) {
             for (let i = 0; i < catchLi.length; i += 1) {
-                catchLi[i].style.backgroundColor = '#ff0000';
+                catchLi[i].style.backgroundColor = '#114b93';
                 catchLi[i].addEventListener('click', () => {
                     const catchInput = document.querySelector('input');
                     localStorage.setItem('miau', catchLi[i].id)
@@ -165,8 +164,9 @@ function editOption() {
                         })
                     }
                 })
-            }   
+            }      
         }
+        catchBtn.style.backgroundColor = '#74aaff'
         if ((cont % 3 === 0 && cont !== 6) || cont === 5 || cont === 7 ) {
             for (let i = 0; i < catchLi.length; i += 1) {
                 catchLi[i].style.backgroundColor = '#74aaff';
