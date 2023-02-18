@@ -1,10 +1,49 @@
-img {
-    width: 15px;
-    height: 15px;
-    margin-left: 15px;
+body {
+    background-color: #74aaff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'Shantell Sans', cursive;
+    font-size: 1.5em;
+}
+
+p {
+    font-family: 'Shantell Sans', cursive;
+    font-size: 0.8em;
+}
+
+input { 
+    text-align: center;
+    font-size: 0.7em;
+    border-radius: 6px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid #dee1e2;
+    color: rgb(14, 14, 16);
+    background: #dee1e2;
+    display: block;   
+    
+}
+
+input:hover {
+    border-color: #ccc;
+
+}
+
+input:focus {
+    border-color: #9147ff;
+    background: #fff;
 }
 
 li {
+    font-family: 'Shantell Sans', cursive;
+    font-size: 0.7em;
     width: 25px;
 }
 
@@ -14,7 +53,7 @@ button {
 }
 
 .remove {
-    background-color: red;
+    background-color: #fffaf3;
 }
 /* 
 #edit {

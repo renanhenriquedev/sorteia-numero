@@ -131,7 +131,8 @@ function editOption() {
         cont += 1;
         console.log(cont)
         const array = []
-        if (cont % 2 === 0) {
+        console.log(array);
+        if (cont % 2 === 0 || cont === 6) {
             for (let i = 0; i < catchLi.length; i += 1) {
                 catchLi[i].style.backgroundColor = '#ff0000';
                 catchLi[i].addEventListener('click', () => {
@@ -157,36 +158,21 @@ function editOption() {
                             catchLi[localStorage.getItem('miau')].appendChild(button);
                             remove();
                             for (let i = 0; i < catchLi.length; i += 1) {
-
+                                
                                 array.push(catchLi[i].innerText)
                             }
                             localStorage.setItem('li', JSON.stringify(array))
                         })
                     }
                 })
-            }
+            }   
         }
-        catchBtn.style.backgroundColor = 'blue'
-        if (cont % 3 === 0) {
+        if ((cont % 3 === 0 && cont !== 6) || cont === 5 || cont === 7 ) {
             for (let i = 0; i < catchLi.length; i += 1) {
-                catchLi[i].style.backgroundColor = 'white';
+                catchLi[i].style.backgroundColor = '#74aaff';
             }
         }
     })
-    teste();
-}
-
-function teste() {
-    const catchBtn = document.querySelector('#edit');
-
-    setTimeout(function () {
-        catchBtn.addEventListener('click', () => {
-            if (catchBtn.style.backgroundColor === 'blue' && 'click') {
-                input.value = '';
-                console.log('pegouuuuuuuuuuuuuuuuuuuuuuuuuuu')
-            }
-        })
-    }, 5000)
 }
 
 
