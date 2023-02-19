@@ -29,6 +29,7 @@ input {
     background: #dee1e2;
     display: block;   
     
+    
 }
 
 input:hover {
@@ -45,6 +46,11 @@ li {
     display: block;
     font-family: 'Shantell Sans', cursive;
     font-size: 1.7em;
+    cursor: pointer;
+}
+
+.teste:hover {
+    background-color: #1f7beb;
 }
 
 button {
@@ -61,8 +67,11 @@ button {
 #edit {
     margin-top: 50px;
     font-size: 0.8em;
+    width: 80px;
+    height: 21.25px;
     background-color: #74aaff;
-
+    font-family: 'Shantell Sans', cursive;
+    cursor: pointer;
 }
 
 #aviso { 

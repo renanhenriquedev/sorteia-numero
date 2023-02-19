@@ -24,6 +24,7 @@ function createTask() {
     const task = document.createElement('li');
     const valueLi = input.value;
     task.id = cont;
+    // task.classList.add('teste')
 
     const button = document.createElement('button');
     button.id = cont;
@@ -133,8 +134,10 @@ function editOption() {
         const array = []
         if (cont % 2 === 0 || cont === 6) {
             for (let i = 0; i < catchLi.length; i += 1) {
-                catchLi[i].style.backgroundColor = '#114b93';
+                catchLi[i].classList.add('teste')
+
                 catchLi[i].addEventListener('click', () => {
+
                     const catchInput = document.querySelector('input');
                     localStorage.setItem('miau', catchLi[i].id)
                     const a = catchLi[i].innerText
@@ -169,7 +172,7 @@ function editOption() {
         catchBtn.style.backgroundColor = '#74aaff'
         if ((cont % 3 === 0 && cont !== 6) || cont === 5 || cont === 7 ) {
             for (let i = 0; i < catchLi.length; i += 1) {
-                catchLi[i].style.backgroundColor = '#74aaff';
+                catchLi[i].classList.remove('teste')
             }
         }
     })
@@ -200,3 +203,4 @@ function init() {
 }
 
 window.onload = init;   
+console.log('teste');
