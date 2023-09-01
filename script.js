@@ -29,12 +29,15 @@ function createTask() {
     button.id = cont;
     button.classList.add('remove');
     button.type = 'button'
-    button.innerHTML = 'X';
+    const icon = document.createElement('i');
+    icon.className = 'bi bi-x'
 
 
     task.innerText = valueLi;
     catchUl.appendChild(task);
+    button.append(icon)
     task.appendChild(button);
+
 
     cont += 1;
     input.value = ''
@@ -96,9 +99,12 @@ function rescueLi() {
             const button = document.createElement('button');
             button.id = cont;
             button.classList.add('remove');
+            const icon = document.createElement('i');
+            icon.className = 'bi bi-x'
+            button.append(icon)
+
 
             button.type = 'button';
-            button.innerHTML = 'X';
             task.appendChild(button);
 
             remove();
@@ -109,6 +115,7 @@ function rescueLi() {
 }
 
 
+
 const buttonEdit = document.createElement('button');
 buttonEdit.id = 'edit'
 body.appendChild(buttonEdit);
@@ -117,26 +124,71 @@ function editOption() {
     let cont = 1
     const catchBtn = document.querySelector('#edit');
     const catchLi = document.querySelectorAll('li');
+    const catchInput = document.querySelector('input');
+
+
     catchBtn.addEventListener('click', () => {
         cont += 1;
         console.log(cont)
+        const array = []
         if (cont % 2 === 0) {
             for (let i = 0; i < catchLi.length; i += 1) {
                 catchLi[i].style.backgroundColor = '#ff0000';
                 catchLi[i].addEventListener('click', () => {
                     const catchInput = document.querySelector('input');
-                    const a = catchLi[i].innerText 
+                    localStorage.setItem('miau', catchLi[i].id)
+                    const a = catchLi[i].innerText
+
+                    catchBtn.style.backgroundColor = 'green'
+
                     catchInput.value = a;
+                    if (catchBtn.style.backgroundColor === 'green') {
+                        catchBtn.addEventListener('click', () => {
+                            catchLi[localStorage.getItem('miau')].innerHTML = catchInput.value
+                            const button = document.createElement('button');
+
+                            button.id = catchLi[i].id;
+                            button.classList.add('remove');
+                            const icon = document.createElement('i');
+                            icon.className = 'bi bi-x'
+                            button.append(icon)
+
+                            button.type = 'button';
+                            catchLi[localStorage.getItem('miau')].appendChild(button);
+                            remove();
+                            for (let i = 0; i < catchLi.length; i += 1) {
+
+                                array.push(catchLi[i].innerText)
+                            }
+                            localStorage.setItem('li', JSON.stringify(array))
+                        })
+                    }
                 })
             }
         }
+        catchBtn.style.backgroundColor = 'blue'
         if (cont % 3 === 0) {
             for (let i = 0; i < catchLi.length; i += 1) {
                 catchLi[i].style.backgroundColor = 'white';
             }
         }
     })
+    teste();
 }
+
+function teste() {
+    const catchBtn = document.querySelector('#edit');
+
+    setTimeout(function () {
+        catchBtn.addEventListener('click', () => {
+            if (catchBtn.style.backgroundColor === 'blue' && 'click') {
+                input.value = '';
+                console.log('pegouuuuuuuuuuuuuuuuuuuuuuuuuuu')
+            }
+        })
+    }, 5000)
+}
+
 
 function validatesEnter() {
     const catchInput = document.querySelector('input');
