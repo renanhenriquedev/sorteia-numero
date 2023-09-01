@@ -24,6 +24,7 @@ function createTask() {
     const task = document.createElement('li');
     const valueLi = input.value;
     task.id = cont;
+    // task.classList.add('teste')
 
     const button = document.createElement('button');
     button.id = cont;
@@ -118,6 +119,7 @@ function rescueLi() {
 
 const buttonEdit = document.createElement('button');
 buttonEdit.id = 'edit'
+buttonEdit.innerText = 'editar'
 body.appendChild(buttonEdit);
 
 function editOption() {
@@ -129,12 +131,13 @@ function editOption() {
 
     catchBtn.addEventListener('click', () => {
         cont += 1;
-        console.log(cont)
         const array = []
-        if (cont % 2 === 0) {
+        if (cont % 2 === 0 || cont === 6) {
             for (let i = 0; i < catchLi.length; i += 1) {
-                catchLi[i].style.backgroundColor = '#ff0000';
+                catchLi[i].classList.add('teste')
+
                 catchLi[i].addEventListener('click', () => {
+
                     const catchInput = document.querySelector('input');
                     localStorage.setItem('miau', catchLi[i].id)
                     const a = catchLi[i].innerText
@@ -157,36 +160,22 @@ function editOption() {
                             catchLi[localStorage.getItem('miau')].appendChild(button);
                             remove();
                             for (let i = 0; i < catchLi.length; i += 1) {
-
+                                
                                 array.push(catchLi[i].innerText)
                             }
                             localStorage.setItem('li', JSON.stringify(array))
                         })
                     }
                 })
-            }
+            }      
         }
-        catchBtn.style.backgroundColor = 'blue'
-        if (cont % 3 === 0) {
+        catchBtn.style.backgroundColor = '#74aaff'
+        if ((cont % 3 === 0 && cont !== 6) || cont === 5 || cont === 7 ) {
             for (let i = 0; i < catchLi.length; i += 1) {
-                catchLi[i].style.backgroundColor = 'white';
+                catchLi[i].classList.remove('teste')
             }
         }
     })
-    teste();
-}
-
-function teste() {
-    const catchBtn = document.querySelector('#edit');
-
-    setTimeout(function () {
-        catchBtn.addEventListener('click', () => {
-            if (catchBtn.style.backgroundColor === 'blue' && 'click') {
-                input.value = '';
-                console.log('pegouuuuuuuuuuuuuuuuuuuuuuuuuuu')
-            }
-        })
-    }, 5000)
 }
 
 
@@ -214,3 +203,4 @@ function init() {
 }
 
 window.onload = init;   
+console.log('teste');
