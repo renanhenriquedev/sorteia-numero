@@ -113,25 +113,29 @@ const buttonEdit = document.createElement('button');
 buttonEdit.id = 'edit'
 body.appendChild(buttonEdit);
 
-function editOption () {
+function editOption() {
+    let cont = 1
+    const catchBtn = document.querySelector('#edit');
     const catchLi = document.querySelectorAll('li');
-    const catchButton = document.querySelector('#edit')
-    if (catchLi.length > 0 ) {
-        catchButton.addEventListener('click', () => {
-            console.log('pegando');
-        })
-    }
-}
-
-function catchTask() {
-    const catchLi = document.querySelectorAll('li')
-
-    for (let i = 0; i < catchLi.length; i += 1) {
-        catchLi[i].addEventListener('click', () => {
-            catchLi[i].style.backgroundColor = '#ff0000';
-        }) 
-    }
-
+    catchBtn.addEventListener('click', () => {
+        cont += 1;
+        console.log(cont)
+        if (cont % 2 === 0) {
+            for (let i = 0; i < catchLi.length; i += 1) {
+                catchLi[i].style.backgroundColor = '#ff0000';
+                catchLi[i].addEventListener('click', () => {
+                    const catchInput = document.querySelector('input');
+                    const a = catchLi[i].innerText 
+                    catchInput.value = a;
+                })
+            }
+        }
+        if (cont % 3 === 0) {
+            for (let i = 0; i < catchLi.length; i += 1) {
+                catchLi[i].style.backgroundColor = 'white';
+            }
+        }
+    })
 }
 
 function validatesEnter() {
@@ -142,8 +146,7 @@ function validatesEnter() {
             remove();
             storeTask();
             removeLast();
-            editOption();
-            catchTask();
+            editOption()
         }
 
     })
