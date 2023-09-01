@@ -31,24 +31,11 @@ function createTask() {
     button.type = 'button'
     button.innerHTML = 'X';
 
-    const buttonEdit = document.createElement('button');
-    buttonEdit.id = cont;
-    buttonEdit.classList.add('button');
-    buttonEdit.type = 'button'
-
-    const createSpan = document.createElement('span');
-    createSpan.classList.add('button-icon');
-
-    const createIon = document.createElement('ion-icon');
-    createIon.name = 'create-outline'
 
     task.innerText = valueLi;
     catchUl.appendChild(task);
     task.appendChild(button);
-    task.appendChild(buttonEdit);
 
-    buttonEdit.appendChild(createSpan);
-    createSpan.appendChild(createIon);
     cont += 1
 }
 
@@ -74,24 +61,25 @@ function remove() {
             const catchRemove = document.getElementById(remove);
             ulTask.removeChild(catchRemove);
             storeTask();
-        })      
+        })
     }
 }
 
-function removeLast () {
+function removeLast() {
     const allButton = document.querySelectorAll('.remove');
     const ulTask = document.querySelector('ul');
     const childrens = ulTask.childNodes;
     for (let i = 0; i < allButton.length; i += 1) {
         allButton[i].addEventListener('click', () => {
             const a = document.querySelectorAll('li').length
-            if( a === 0 ) {
+            if (a === 0) {
                 localStorage.removeItem('li');
             }
-        })      
-        
+        })
+
     }
 }
+
 
 function rescueLi() {
     if (localStorage.getItem('li') !== null) {
@@ -111,29 +99,27 @@ function rescueLi() {
             button.type = 'button'
             button.innerHTML = 'X';
             task.appendChild(button);
-            
+
             remove();
 
-            const buttonEdit = document.createElement('button');
-            buttonEdit.id = cont;
-            buttonEdit.classList.add('button');
-            buttonEdit.type = 'button'
-
-            const createSpan = document.createElement('span');
-            createSpan.classList.add('button-icon');
-
-            const createIon = document.createElement('ion-icon');
-            createIon.name = 'create-outline'
-
-            task.appendChild(buttonEdit);
-
-            buttonEdit.appendChild(createSpan);
-            createSpan.appendChild(createIon);
-            cont += 1
         }
     }
 }
 
+
+const buttonEdit = document.createElement('button');
+buttonEdit.id = 'edit'
+body.appendChild(buttonEdit);
+
+function editOption () {
+    const catchLi = document.querySelectorAll('li');
+    const catchButton = document.querySelector('#edit')
+    if (catchLi.length > 0 ) {
+        catchButton.addEventListener('click', () => {
+            console.log('pegando');
+        })
+    }
+}
 
 function validatesEnter() {
     const catchInput = document.querySelector('input');
@@ -143,6 +129,7 @@ function validatesEnter() {
             remove();
             storeTask();
             removeLast();
+            editOption();
         }
 
     })
@@ -154,6 +141,7 @@ function init() {
     validatesEnter();
     rescueLi();
     removeLast();
+    editOption();
 }
 
 window.onload = init;   
