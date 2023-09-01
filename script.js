@@ -36,7 +36,8 @@ function createTask() {
     catchUl.appendChild(task);
     task.appendChild(button);
 
-    cont += 1
+    cont += 1;
+    input.value = ''
 }
 
 
@@ -96,11 +97,12 @@ function rescueLi() {
             button.id = cont;
             button.classList.add('remove');
 
-            button.type = 'button'
+            button.type = 'button';
             button.innerHTML = 'X';
             task.appendChild(button);
 
             remove();
+            cont += 1;
 
         }
     }
@@ -121,6 +123,17 @@ function editOption () {
     }
 }
 
+function catchTask() {
+    const catchLi = document.querySelectorAll('li')
+
+    for (let i = 0; i < catchLi.length; i += 1) {
+        catchLi[i].addEventListener('click', () => {
+            catchLi[i].style.backgroundColor = '#ff0000';
+        }) 
+    }
+
+}
+
 function validatesEnter() {
     const catchInput = document.querySelector('input');
     catchInput.addEventListener('keydown', function (e) {
@@ -130,6 +143,7 @@ function validatesEnter() {
             storeTask();
             removeLast();
             editOption();
+            catchTask();
         }
 
     })
